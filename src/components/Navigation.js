@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { HiMiniBars3 } from "react-icons/hi2";
+import { MdClose } from "react-icons/md";
+import { IoChevronForwardOutline } from "react-icons/io5";
 
 import { headers } from "next/headers"
 
@@ -54,7 +56,7 @@ const Navigation = () => {
             </div>
             {/* ボタン */}
             <div>
-              <Link href={''} className="btnBlue inline-flex lg:inline-block">
+              <Link href={''} className="btnBlue inline-flex lg:inline-block max-lg:hidden">
                 申し込み
               </Link>
 
@@ -66,6 +68,32 @@ const Navigation = () => {
           </div>
         </div>
       </header>
+
+      {/* モバイルメニュー */}
+      <div>
+        <div>
+          <div>
+            <div>
+              <button>
+                <MdClose />
+                <span>閉じる</span>
+              </button>
+            </div>
+
+            <div>
+              <ul>
+                <li>
+                  <Link href={''}>
+                    <span>ホーム</span>
+                    <span><IoChevronForwardOutline /></span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </>
   )
 }
