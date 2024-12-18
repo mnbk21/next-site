@@ -1,13 +1,16 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { use, useState, useEffect } from "react";
+// import React from "react";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { MdClose } from "react-icons/md";
 import { IoChevronForwardOutline } from "react-icons/io5";
 
-import { headers } from "next/headers"
+// import { headers } from "next/headers"
 
-const NavigationMenu = [
+const navigationMenu = [
   {
     href: '#home',
     label: 'ホーム',
@@ -31,6 +34,31 @@ const NavigationMenu = [
 ]
 
 const Navigation = () => {
+
+  const [navOpen, setNavOpen] = useState(false)
+
+  const mobileMenuHandler = () => {
+    setNavOpen(!navOpen)
+  }
+
+  //768以上になると閉じる
+  const [mobile, setMobile] = useState({})
+  useEffect(() => {
+    function handleResize() {
+      setMobile({
+        height:window.innerHeight,
+        width:window.innerWidth,
+      })
+      if (mobile.width > 768 && navOpen) {
+        setNavOpen(false)
+      }
+    }
+    window.addEventListener('resize' , handleResize)
+    return() => {
+      window.removeEventListener('resize' , handleResize)
+    }
+  })
+
   return (
     <>
       {/* WEBメニュー */}
@@ -46,7 +74,7 @@ const Navigation = () => {
             {/* メニュー */}
             <div className="hidden lg:block text-center">
               <ul className="flex space-x-7">
-                {NavigationMenu.map((item, index) => {
+                {navigationMenu.map((item, index) => {
                   return <li key={index} className="text-body">
                             <Link href={item.href}>{item.label}</Link>
                           </li>
@@ -61,7 +89,7 @@ const Navigation = () => {
               </Link>
 
               {/* モバイル用 */}
-              <button className="block lg:hidden">
+              <button className="block lg:hidden" onClick={mobileMenuHandler}>
                 <HiMiniBars3 className="text-4xl"/>
               </button>
             </div>
@@ -70,24 +98,28 @@ const Navigation = () => {
       </header>
 
       {/* モバイルメニュー */}
-      <div>
-        <div>
-          <div>
-            <div>
-              <button>
+      <div className={navOpen ? "py-0 block w-screen z-[999]" : "hidden"}>
+        <div className="h-screen w-screen z-[999] top-0 fixed bg-black bg-opacity-50" onClick={mobileMenuHandler}>
+          <div className="h-screen bg-white w-[380px] top-0 right-0 z-[999] fixed">
+            <div className="h-14 px-10 border-b flex items-center">
+              <button className="flex items-center space-x-3" onClick={mobileMenuHandler}>
                 <MdClose />
                 <span>閉じる</span>
               </button>
             </div>
 
-            <div>
-              <ul>
-                <li>
-                  <Link href={''}>
-                    <span>ホーム</span>
-                    <span><IoChevronForwardOutline /></span>
-                  </Link>
-                </li>
+            <div className="h-full py-3 px-10 pb-20">
+              <ul className="block mb-7">
+                {navigationMenu.map((item, index) => {
+                  return <li key={index}>
+                    <Link href={item.href} className="group flex items-center py-2 duration-300 transition-all sease-out hover:text-green" onClick={() => setNavOpen(false)}>
+                      <span>{item.label}</span>
+                      <span className="relative left-2 duration-300 transition-all ease-in-out opacity-0 group-hover:opacity-100 group-hover:left-3">
+                        <IoChevronForwardOutline className="text-xl" />
+                      </span>
+                    </Link>
+                  </li>
+                })}
               </ul>
             </div>
 
