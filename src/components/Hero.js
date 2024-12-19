@@ -32,9 +32,9 @@ const Hero = () => {
   })
 
   return (
-    <section id="home" className="py-20">
+    <section id="home" className="py-20 max-md:py-0">
       <div className="container px-4 mx-auto">
-        <div className="lg:flex justify-between items-center">
+        <div className="lg:flex justify-between items-center max-md:overflow-hidden">
           {/* 左 */}
           <div className="lg:w-5/12 mb-10 lg:mb-0">
             <span className='inline-block py-1 pl-3 text-heading font-semibold relative mb-7 before:content-[" "] before:absolute before:w-2/3 before:bg-pinkLight before:left-0 before:top-0 before:bottom-0 before:z-[-1]'
