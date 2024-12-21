@@ -16,11 +16,11 @@ const navigationMenu = [
     label: 'ホーム',
   },
   {
-    href: '#service',
+    href: '#services',
     label: 'サービス',
   },
   {
-    href: '#solution',
+    href: '#solutions',
     label: 'ソリューション',
   },
   {
