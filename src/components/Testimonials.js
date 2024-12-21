@@ -8,8 +8,8 @@ import "aos/dist/aos.css";
  
 const testimonialsContent = {
   text: {
-    subTitle: '2023年度 合格者の声',
-    title: '難関大へ2023合格者の声',
+    subTitle: '2024年度 合格者の声',
+    title: '難関大へ2024合格者の声',
     description: 'Docゼミから志望大学に合格した方の声がたくさん届いています！',
   },
   testimonials: [

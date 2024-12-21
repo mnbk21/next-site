@@ -10,7 +10,7 @@ import "aos/dist/aos.css";
 const statsContent = {
   stats: [
     {
-      number: '99.9%',
+      number: '92.6%',
       label: '現役合格率',
     },
     {
